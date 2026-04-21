@@ -17,12 +17,18 @@ def parse_file(file):
         return "\n".join([p.text for p in doc.paragraphs])
     return ""
 
+def count_words_logic(text: str):
+    return len(text.split())
+
+def check_topic_logic(text: str, tracks: str):
+    return any(track.strip().lower() in text.lower() for track in tracks.split(","))
+
 @tool("word_counter")
 def count_words(text: str):
     """Считает количество слов в тексте."""
-    return len(text.split())
+    return count_words_logic(text)
 
 @tool("topic_checker")
 def check_topic(text: str, tracks: str):
     """Проверяет соответствие текста научным направлениям."""
-    return any(track.strip().lower() in text.lower() for track in tracks.split(","))
+    return check_topic_logic(text, tracks)

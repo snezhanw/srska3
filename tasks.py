@@ -1,6 +1,7 @@
 from crewai import Task
+from crewai.tasks.conditional_task import ConditionalTask
 
-def create_tasks(formatting, topic, editor, decision, text, knowledge, tracks):
+def create_tasks(formatting, topic, editor, decision, text, knowledge, tracks, need_editor):
     t1 = Task(
         description=f"Проверь оформление и структуру:\n{text}\nТребования:\n{knowledge}",
         expected_output="Список ошибок оформления",

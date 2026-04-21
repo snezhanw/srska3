@@ -9,10 +9,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 from agents import create_agents
 from tasks import create_tasks
-from tools import parse_file, count_words, check_topic
+from tools import parse_file, count_words_logic, check_topic_logic
 from helpers import load_knowledge
 
 load_dotenv()
+os.environ["GEMINI_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 os.environ["OTEL_SDK_DISABLED"] = "true"
 
@@ -46,7 +47,7 @@ if st.button("🚀 Запустить анализ"):
         st.stop()
 
     text = parse_file(file)
-    word_val = count_words.fn(text)
+    word_val = count_words_logic(text)
 
     st.info(f"Количество слов: {word_val}")
 
@@ -55,7 +56,7 @@ if st.button("🚀 Запустить анализ"):
 
     formatting, topic, editor, decision = create_agents(llm)
 
-    topic_ok = check_topic(text, tracks)
+    topic_ok = check_topic_logic(text, tracks)
     need_editor = (word_val < 300 or word_val > 500) or not topic_ok
 
     if need_editor:
