@@ -46,7 +46,7 @@ if st.button("🚀 Запустить анализ"):
         st.stop()
 
     text = parse_file(file)
-    word_val = count_words(text)
+    word_val = count_words.fn(text)
 
     st.info(f"Количество слов: {word_val}")
 
