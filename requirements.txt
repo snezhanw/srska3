@@ -1,5 +1,9 @@
-streamlit
 crewai
+crewai-tools
+streamlit
 python-dotenv
 PyPDF2
 python-docx
+litellm
+setuptools
+tiktoken
