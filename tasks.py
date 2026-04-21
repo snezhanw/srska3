@@ -13,7 +13,6 @@ def create_tasks(formatting, topic, editor, decision, text, knowledge, tracks):
         agent=topic
     )
 
-    # Правильный ConditionalTask: выполняется, если в t1 или t2 найдены проблемы
     t3 = ConditionalTask(
         description=f"На основе отчетов t1 и t2, исправь текст или предложи правки:\n{text}",
         expected_output="Исправленный текст или детальные рекомендации",
@@ -25,7 +24,7 @@ def create_tasks(formatting, topic, editor, decision, text, knowledge, tracks):
         description="Сделай финальный вывод на основе всех предыдущих этапов: Принять / Доработать / Отклонить",
         expected_output="Итоговое решение (Decision Memo)",
         agent=decision,
-        human_input=True # ВОТ ЭТО ВКЛЮЧАЕТ НАСТОЯЩИЙ HITL
+        human_input=True 
     )
 
     return [t1, t2, t3, t4]
